@@ -3,6 +3,9 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { KPICard } from "@/components/ui/kpi-card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { ChartCard } from "@/components/charts/ChartCard";
+import { PulseActivityChart } from "@/components/charts/PulseActivityChart";
+import { GeographicHeatMap } from "@/components/charts/GeographicHeatMap";
 import { Users, UserPlus, TrendingUp, Activity, Search } from "lucide-react";
 
 export default function UsuariosPage() {
@@ -109,25 +112,29 @@ export default function UsuariosPage() {
 
         {/* Atividade & Distribuição */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="ec-card">
-            <h3 className="ec-h3 mb-4">Atividade de Usuários</h3>
-            <div className="h-64 flex items-center justify-center bg-muted/20 rounded-lg">
-              <div className="ec-empty">
-                <Activity className="w-12 h-12 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground">Gráfico de atividade</p>
-              </div>
-            </div>
-          </div>
+          <ChartCard
+            title="Atividade de Usuários"
+            statistic={{
+              label: "Usuários ativos agora",
+              value: "1,247 usuários ativos",
+              trend: "Pico das 14h",
+              isPositive: true
+            }}
+          >
+            <PulseActivityChart />
+          </ChartCard>
           
-          <div className="ec-card">
-            <h3 className="ec-h3 mb-4">Distribuição Geográfica</h3>
-            <div className="h-64 flex items-center justify-center bg-muted/20 rounded-lg">
-              <div className="ec-empty">
-                <Users className="w-12 h-12 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground">Distribuição por região</p>
-              </div>
-            </div>
-          </div>
+          <ChartCard
+            title="Distribuição Geográfica"
+            statistic={{
+              label: "Concentração regional",
+              value: "São Paulo concentra 34%",
+              trend: "Sudeste domina",
+              isPositive: true
+            }}
+          >
+            <GeographicHeatMap />
+          </ChartCard>
         </div>
 
         {/* Ranking de usuários */}

@@ -2,6 +2,10 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { KPICard } from "@/components/ui/kpi-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ChartCard } from "@/components/charts/ChartCard";
+import { WaveChart } from "@/components/charts/WaveChart";
+import { TrendColumnChart } from "@/components/charts/TrendColumnChart";
+import { ComposedGrowthChart } from "@/components/charts/ComposedGrowthChart";
 import { BarChart3, Users, TrendingUp, DollarSign, Download } from "lucide-react";
 
 export default function Dashboard() {
@@ -61,35 +65,41 @@ export default function Dashboard() {
 
         {/* Gráficos */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="ec-card">
-            <h3 className="ec-h3 mb-4">Usuários por Mês</h3>
-            <div className="h-64 flex items-center justify-center bg-muted/20 rounded-lg">
-              <div className="ec-empty">
-                <BarChart3 className="w-12 h-12 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground">Gráfico em desenvolvimento</p>
-              </div>
-            </div>
-          </div>
+          <ChartCard
+            title="Usuários por Mês"
+            statistic={{
+              label: "Comparativo mensal",
+              value: "4,100 usuários",
+              trend: "↑ 23% vs mês anterior",
+              isPositive: true
+            }}
+          >
+            <WaveChart />
+          </ChartCard>
           
-          <div className="ec-card">
-            <h3 className="ec-h3 mb-4">Distribuição por Categoria</h3>
-            <div className="h-64 flex items-center justify-center bg-muted/20 rounded-lg">
-              <div className="ec-empty">
-                <BarChart3 className="w-12 h-12 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground">Gráfico em desenvolvimento</p>
-              </div>
-            </div>
-          </div>
+          <ChartCard
+            title="Distribuição por Categoria"
+            statistic={{
+              label: "Categoria líder",
+              value: "Alimentícios lideram com 45%",
+              trend: "Crescimento sustentado",
+              isPositive: true
+            }}
+          >
+            <TrendColumnChart />
+          </ChartCard>
           
-          <div className="ec-card">
-            <h3 className="ec-h3 mb-4">Crescimento de Usuários</h3>
-            <div className="h-64 flex items-center justify-center bg-muted/20 rounded-lg">
-              <div className="ec-empty">
-                <TrendingUp className="w-12 h-12 text-muted-foreground mb-2" />
-                <p className="text-sm text-muted-foreground">Gráfico em desenvolvimento</p>
-              </div>
-            </div>
-          </div>
+          <ChartCard
+            title="Crescimento de Usuários"
+            statistic={{
+              label: "Tendência",
+              value: "Crescimento sustentado",
+              trend: "6 meses consecutivos",
+              isPositive: true
+            }}
+          >
+            <ComposedGrowthChart />
+          </ChartCard>
         </div>
 
         {/* Parceiros em Destaque */}
