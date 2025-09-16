@@ -2,95 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* ECOLove Design System */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* ECOLove Base Tokens */
+    --ec-primary: 147 73% 41%; /* #1BD379 */
+    --ec-radius: 10px;
+    --ec-gap: 12px;
+    --ec-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    
+    /* Light Theme */
+    --ec-bg: 210 11% 96%; /* #F7F8F9 */
+    --ec-surface: 0 0% 100%; /* #FFFFFF */
+    --ec-text: 221 39% 11%; /* #111827 */
+    --ec-muted: 220 9% 46%; /* #6B7280 */
+    --ec-border: 220 13% 91%; /* #E5E7EB */
+    
+    /* Semantic Colors */
+    --ec-success: 147 73% 41%; /* #1BD379 */
+    --ec-warning: 38 92% 50%; /* #F59E0B */
+    --ec-danger: 0 84% 60%; /* #EF4444 */
+    --ec-info: 213 93% 68%; /* #60A5FA */
+    --ec-neutral: 220 9% 46%; /* #9CA3AF */
+    
+    /* Shadcn compatibility */
+    --background: var(--ec-bg);
+    --foreground: var(--ec-text);
+    --card: var(--ec-surface);
+    --card-foreground: var(--ec-text);
+    --popover: var(--ec-surface);
+    --popover-foreground: var(--ec-text);
+    --primary: var(--ec-primary);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: var(--ec-text);
+    --muted: 220 14% 96%;
+    --muted-foreground: var(--ec-muted);
+    --accent: 220 14% 96%;
+    --accent-foreground: var(--ec-text);
+    --destructive: var(--ec-danger);
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--ec-border);
+    --input: var(--ec-border);
+    --ring: var(--ec-primary);
+    --radius: var(--ec-radius);
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  [data-theme="dark"] {
+    /* Dark Theme */
+    --ec-bg: 150 11% 5%; /* #0B0F0E */
+    --ec-surface: 216 8% 12%; /* #121417 */
+    --ec-text: 220 9% 95%; /* #F3F4F6 */
+    --ec-muted: 220 9% 68%; /* #9CA3AF */
+    --ec-border: 220 13% 18%; /* #1F2937 */
+    
+    /* Update shadcn variables for dark */
+    --background: var(--ec-bg);
+    --foreground: var(--ec-text);
+    --card: var(--ec-surface);
+    --card-foreground: var(--ec-text);
+    --popover: var(--ec-surface);
+    --popover-foreground: var(--ec-text);
+    --primary-foreground: var(--ec-text);
+    --secondary: 220 13% 18%;
+    --secondary-foreground: var(--ec-text);
+    --muted: 220 13% 18%;
+    --muted-foreground: var(--ec-muted);
+    --accent: 220 13% 18%;
+    --accent-foreground: var(--ec-text);
+    --destructive-foreground: var(--ec-text);
+    --border: var(--ec-border);
+    --input: var(--ec-border);
   }
 }
 
@@ -100,6 +82,112 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-ubuntu;
+  }
+}
+
+/* ECOLove Component Styles */
+@layer components {
+  /* Card */
+  .ec-card {
+    @apply bg-card rounded-[var(--ec-radius)] shadow-[var(--ec-shadow)] p-4;
+  }
+  
+  /* Badges */
+  .ec-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .ec-badge.is-success {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400;
+  }
+  .ec-badge.is-warning {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400;
+  }
+  .ec-badge.is-danger {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400;
+  }
+  .ec-badge.is-info {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400;
+  }
+  .ec-badge.is-neutral {
+    @apply bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400;
+  }
+  
+  /* Buttons */
+  .ec-btn {
+    @apply inline-flex items-center justify-center h-10 px-4 text-sm font-medium rounded-[var(--ec-radius)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .ec-btn.primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+  .ec-btn.ghost {
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+  .ec-btn.soft {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+  .ec-btn.danger {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+  }
+  
+  /* Inputs */
+  .ec-input, .ec-select {
+    @apply h-10 w-full rounded-[var(--ec-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  /* Table */
+  .ec-table {
+    @apply w-full caption-bottom text-sm;
+  }
+  .ec-table thead tr {
+    @apply border-b;
+  }
+  .ec-table th {
+    @apply h-12 px-4 text-left align-middle font-medium text-muted-foreground sticky top-0 bg-muted/50;
+  }
+  .ec-table tbody tr {
+    @apply border-b transition-colors hover:bg-muted/50;
+  }
+  .ec-table tbody tr:nth-child(even) {
+    @apply bg-muted/25;
+  }
+  .ec-table td {
+    @apply p-4 align-middle;
+  }
+  
+  /* Toolbar */
+  .ec-toolbar {
+    @apply flex items-center justify-between p-4 bg-card border-b;
+  }
+  
+  /* Typography */
+  .ec-h1 {
+    @apply text-[32px] leading-[40px] font-bold;
+  }
+  .ec-h2 {
+    @apply text-[24px] leading-[32px] font-semibold;
+  }
+  .ec-h3 {
+    @apply text-[20px] leading-[28px] font-medium;
+  }
+  .ec-body {
+    @apply text-base leading-6;
+  }
+  .ec-small {
+    @apply text-sm leading-5;
+  }
+  
+  /* Empty State */
+  .ec-empty {
+    @apply flex flex-col items-center justify-center py-12 text-center;
+  }
+  .ec-empty svg {
+    @apply w-16 h-16 text-muted-foreground mb-4;
+  }
+  .ec-empty h3 {
+    @apply text-lg font-medium mb-2;
+  }
+  .ec-empty p {
+    @apply text-muted-foreground mb-4;
   }
 }

@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        ubuntu: ['Ubuntu', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +60,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        'ec-primary': "hsl(var(--ec-primary))",
+        'ec-success': "hsl(var(--ec-success))",
+        'ec-warning': "hsl(var(--ec-warning))",
+        'ec-danger': "hsl(var(--ec-danger))",
+        'ec-info': "hsl(var(--ec-info))",
+        'ec-neutral': "hsl(var(--ec-neutral))",
       },
       borderRadius: {
         lg: "var(--radius)",
