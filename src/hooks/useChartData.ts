@@ -35,26 +35,39 @@ export function useChartData() {
     { month: 'Ago', newUsers: 267, totalActive: 2180 },
   ], []);
 
-  const activityData = useMemo(() => [
-    { name: '24h', value: 92, fill: 'hsl(var(--ec-primary))' },
-    { name: '7 dias', value: 78, fill: 'hsl(var(--ec-success))' },
-    { name: '30 dias', value: 65, fill: 'hsl(var(--ec-info))' },
+  const hourlyActivity = useMemo(() => [
+    { hour: '00h', users: 234, isPeak: false },
+    { hour: '02h', users: 156, isPeak: false },
+    { hour: '04h', users: 89, isPeak: false },
+    { hour: '06h', users: 287, isPeak: false },
+    { hour: '08h', users: 945, isPeak: false },
+    { hour: '10h', users: 1420, isPeak: true },
+    { hour: '12h', users: 1680, isPeak: true },
+    { hour: '14h', users: 1890, isPeak: true },
+    { hour: '16h', users: 1340, isPeak: false },
+    { hour: '18h', users: 1560, isPeak: true },
+    { hour: '20h', users: 1230, isPeak: false },
+    { hour: '22h', users: 890, isPeak: false },
   ], []);
 
-  const geographicData = useMemo(() => [
-    { name: 'São Paulo', users: 1247, percentage: 34 },
-    { name: 'Rio de Janeiro', users: 892, percentage: 24 },
-    { name: 'Minas Gerais', users: 567, percentage: 15 },
-    { name: 'Paraná', users: 423, percentage: 11 },
-    { name: 'Bahia', users: 356, percentage: 10 },
-    { name: 'Outros Estados', users: 234, percentage: 6 },
+  const worldMapData = useMemo(() => [
+    { city: 'São Paulo', x: 25, y: 75, users: 1247 },
+    { city: 'Rio de Janeiro', x: 27, y: 73, users: 892 },
+    { city: 'Nova York', x: 15, y: 35, users: 678 },
+    { city: 'Londres', x: 50, y: 25, users: 543 },
+    { city: 'Tóquio', x: 85, y: 40, users: 834 },
+    { city: 'Sydney', x: 90, y: 85, users: 456 },
+    { city: 'Lagos', x: 52, y: 55, users: 321 },
+    { city: 'Mumbai', x: 72, y: 60, users: 765 },
+    { city: 'Barcelona', x: 48, y: 30, users: 398 },
+    { city: 'Toronto', x: 12, y: 30, users: 512 },
   ], []);
 
   return {
     monthlyUsers,
     categoryDistribution,
     userGrowth,
-    activityData,
-    geographicData,
+    hourlyActivity,
+    worldMapData,
   };
 }

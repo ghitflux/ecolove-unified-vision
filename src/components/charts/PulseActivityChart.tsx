@@ -1,52 +1,77 @@
-import { RadialBarChart, RadialBar, ResponsiveContainer, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { useChartData } from '@/hooks/useChartData';
 
 export function PulseActivityChart() {
-  const { activityData } = useChartData();
+  const { hourlyActivity } = useChartData();
 
-  const pulseStyle = {
-    animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+  const CustomDot = (props: any) => {
+    const { cx, cy, payload } = props;
+    if (payload.isPeak) {
+      return (
+        <circle
+          cx={cx}
+          cy={cy}
+          r={6}
+          fill="hsl(var(--ec-primary))"
+          stroke="hsl(var(--background))"
+          strokeWidth={2}
+          className="animate-pulse"
+        />
+      );
+    }
+    return (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={3}
+        fill="hsl(var(--ec-primary))"
+        fillOpacity={0.6}
+      />
+    );
   };
 
   return (
-    <div className="relative">
-      <ResponsiveContainer width="100%" height={280}>
-        <RadialBarChart 
-          cx="50%" 
-          cy="50%" 
-          innerRadius="20%" 
-          outerRadius="80%" 
-          data={activityData}
-          startAngle={90}
-          endAngle={-270}
-        >
-          <RadialBar 
-            background={{ fill: 'hsl(var(--muted))' }}
-            dataKey="value"
-            fill="hsl(var(--ec-primary))"
-            style={pulseStyle}
-          />
-          <Legend 
-            iconSize={18}
-            layout="horizontal"
-            verticalAlign="bottom"
-            align="center"
-            wrapperStyle={{
-              paddingTop: '20px',
-              fontSize: '12px',
-              color: 'hsl(var(--muted-foreground))'
-            }}
-          />
-        </RadialBarChart>
-      </ResponsiveContainer>
-      
-      {/* Center indicator */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-2xl font-bold text-ec-primary">87%</div>
-          <div className="text-sm text-muted-foreground">Atividade</div>
-        </div>
-      </div>
-    </div>
+    <ResponsiveContainer width="100%" height={280}>
+      <LineChart data={hourlyActivity} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <defs>
+          <linearGradient id="activityGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="hsl(var(--ec-primary))" stopOpacity={0.3}/>
+            <stop offset="95%" stopColor="hsl(var(--ec-primary))" stopOpacity={0.1}/>
+          </linearGradient>
+        </defs>
+        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+        <XAxis 
+          dataKey="hour" 
+          stroke="hsl(var(--muted-foreground))"
+          fontSize={12}
+        />
+        <YAxis 
+          stroke="hsl(var(--muted-foreground))"
+          fontSize={12}
+        />
+        <Tooltip 
+          contentStyle={{
+            backgroundColor: 'hsl(var(--background))',
+            border: '1px solid hsl(var(--border))',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+          }}
+          formatter={(value, name) => [
+            `${value} usuários`,
+            name === 'users' ? 'Usuários ativos' : name
+          ]}
+        />
+        <ReferenceLine y={1000} stroke="hsl(var(--ec-warning))" strokeDasharray="5 5" />
+        <Line 
+          type="monotone" 
+          dataKey="users" 
+          stroke="hsl(var(--ec-primary))"
+          strokeWidth={3}
+          fill="url(#activityGradient)"
+          dot={<CustomDot />}
+          activeDot={{ r: 8, fill: 'hsl(var(--ec-primary))' }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }
