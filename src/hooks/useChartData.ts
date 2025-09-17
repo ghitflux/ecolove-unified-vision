@@ -50,17 +50,40 @@ export function useChartData() {
     { hour: '22h', users: 890, isPeak: false },
   ], []);
 
-  const worldMapData = useMemo(() => [
-    { city: 'São Paulo', x: 25, y: 75, users: 1247 },
-    { city: 'Rio de Janeiro', x: 27, y: 73, users: 892 },
-    { city: 'Nova York', x: 15, y: 35, users: 678 },
-    { city: 'Londres', x: 50, y: 25, users: 543 },
-    { city: 'Tóquio', x: 85, y: 40, users: 834 },
-    { city: 'Sydney', x: 90, y: 85, users: 456 },
-    { city: 'Lagos', x: 52, y: 55, users: 321 },
-    { city: 'Mumbai', x: 72, y: 60, users: 765 },
-    { city: 'Barcelona', x: 48, y: 30, users: 398 },
-    { city: 'Toronto', x: 12, y: 30, users: 512 },
+  const brazilianRegionsData = useMemo(() => [
+    { 
+      region: 'Sudeste', 
+      'São Paulo': 1247, 
+      'Rio de Janeiro': 892, 
+      'Minas Gerais': 634, 
+      'Espírito Santo': 198 
+    },
+    { 
+      region: 'Sul', 
+      'Rio Grande do Sul': 456, 
+      'Santa Catarina': 378, 
+      'Paraná': 512 
+    },
+    { 
+      region: 'Nordeste', 
+      'Bahia': 423, 
+      'Pernambuco': 345, 
+      'Ceará': 289, 
+      'Outros': 267 
+    },
+    { 
+      region: 'Norte', 
+      'Amazonas': 178, 
+      'Pará': 156, 
+      'Outros': 98 
+    },
+    { 
+      region: 'Centro-Oeste', 
+      'Goiás': 234, 
+      'Mato Grosso': 145, 
+      'Brasília': 189, 
+      'Mato Grosso do Sul': 87 
+    },
   ], []);
 
   return {
@@ -68,6 +91,6 @@ export function useChartData() {
     categoryDistribution,
     userGrowth,
     hourlyActivity,
-    worldMapData,
+    brazilianRegionsData,
   };
 }
